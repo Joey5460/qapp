@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="/qapp">
+  <file>main.qml</file>
+  <file>qml/AddContact.qml</file>
+  <file>qml/ContactForm.ui.qml</file>
+  <file>qml/FakeImage.qml</file>
+  <file>qml/HamburgerButton.qml</file>
+  <file>qml/InitPage.qml</file>
+  <file>images/qt-logo.png</file>
+  </qresource>
+</RCC>
