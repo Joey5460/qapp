@@ -69,7 +69,7 @@ Rectangle {
         highlightMoveDuration: 0
         focus: true
         snapMode: ListView.SnapToItem
-        model: StockListModel {}
+        //model: StockListModel {}
         currentIndex: -1 // Don't pre-select any item
 
         onCurrentIndexChanged: {
@@ -85,5 +85,9 @@ Rectangle {
             width: view.width
             color: "#eeeeee"
         }
+    }
+    function updateModel(model)
+    {
+        view.model = model
     }
 }

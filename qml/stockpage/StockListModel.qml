@@ -52,12 +52,53 @@ import QtQml.Models 2.15
 
 ListModel {
     id: stocks
-
+    // pre-fetch data for all entries
+    property string name
+    property string apiBase: "https://finnhub.io/api/v1/quote?symbol=%1&token=c5t6ek2ad3icf7iiph30"
+    signal updateEvaluation(string name, real evl)
     // pre-fetch data for all entries
     Component.onCompleted: {
         for (var idx = 0; idx < count; ++idx) {
-            getCloseValue(idx)
+            //getCloseValue(idx)
+            getQuote(idx);
         }
+    }
+    onDataChanged:{
+        updateEvaluation(name, getEvaluation())
+    }
+    function getQuote(index)
+    {
+        //var req = get(index).api //https://finnhub.io/api/v1/quote?symbol=AAPL&token=c5t6ek2ad3icf7iiph30
+        var req = apiBase.arg(get(index).stockId)
+        console.log(req)
+        var xhr = new XMLHttpRequest;
+
+        xhr.open("GET", req, true);
+
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.LOADING || xhr.readyState === XMLHttpRequest.DONE) {
+        console.log(xhr.responseText)
+        if (xhr.responseText){
+            var records = xhr.responseText;
+            console.log("quote:" + records);
+            var json = JSON.parse(records);
+            console.log("changePercentage",json.dp)
+            //setProperty(index, "value", json["c"].toFixed(3));
+            setProperty(index, "changePercentage", json["dp"].toFixed(3));
+        }
+        }
+        }
+        xhr.send()
+    }
+
+    function getEvaluation()
+    {
+        var average = 0.0;
+        for (var idx = 0; idx < count; ++idx) {
+            average += parseFloat(get(idx).changePercentage);
+        }
+        console.log("average:", average/count);
+        return average/count;
     }
 
     function getCloseValue(index) {
@@ -78,7 +119,7 @@ ListModel {
                 var records = xhr.responseText.split('\n');
                 var unknown = "n/a";
                 set(index, {"value": unknown, "change": unknown, "changePercentage": unknown});
-                if (records.length > 0 && xhr.status == 200) {
+                if (records.length > 0 && xhr.status === 200) {
                     var r = records[1].split(',');
                     var today = parseFloat(r[4]);
 
@@ -109,6 +150,9 @@ ListModel {
     // ListElement {name: "The Qt Company"; stockId: "TQTC"; value: "999.0"; change: "0.0"; changePercentage: "0.0"}
 
     // Offline data downloaded using the url, https://www.quandl.com/api/v3/datasets/WIKI/<stockId>.csv.
+    ListElement {name: "Advanced Micro Devices Inc."; stockId: "BABA"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
+    ListElement {name: "Amazon.com Inc."; stockId: "BILI"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
+/*
     ListElement {name: "Advanced Micro Devices Inc."; stockId: "AMD"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
     ListElement {name: "Amazon.com Inc."; stockId: "AMZN"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
     ListElement {name: "Apple Inc."; stockId: "AAPL"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
@@ -127,5 +171,6 @@ ListModel {
     ListElement {name: "Tesla Motors Inc."; stockId: "TSLA"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
     ListElement {name: "Texas Instruments Inc."; stockId: "TXN"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
     ListElement {name: "Facebook Inc."; stockId: "FB"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
+    */
 }
 

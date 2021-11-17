@@ -7,34 +7,6 @@ ApplicationWindow{
   height: 960
   visible: true
  
-  Stocqt{
-      id: initPage
-  }
-  AddContact{
-  id: addContact
-  }
- 
-  header: ToolBar{
-  id : tooBar
-  HamburgerButton{
-  id: menuBtn
-  height: parent.height
-  width: parent.height
-  anchors.verticalCenter:parent.verticalCenter
-  onClicked: {
-  if(drawer){
-  drawer.visible = !drawer.visible
-  }
-  }
-  }
-  Label{
-  padding: 10
-  text: qsTr("QApp")
-  font.pixelSize: 20
-  anchors.centerIn: parent
-  }
-  }
- 
   Drawer {
   id: drawer
   y: tooBar.height
@@ -45,7 +17,7 @@ ApplicationWindow{
   ListModel{
   id: menuItems
   ListElement {
-  name: "Calc"
+  name: "Portfolio"
   cont: 0
   }
   ListElement {
@@ -109,6 +81,36 @@ ApplicationWindow{
   }
   }
  
+  Portfolios{
+  id: initPage
+  header: ToolBar{
+  id : tooBar
+  HamburgerButton{
+  id: menuBtn
+  height: parent.height
+  width: parent.height
+  anchors.verticalCenter:parent.verticalCenter
+  onClicked: {
+  if(drawer){
+  drawer.visible = !drawer.visible
+  }
+  }
+  }
+  Label{
+  padding: 10
+  text: qsTr("QApp")
+  font.pixelSize: 20
+  anchors.centerIn: parent
+  }
+  }
+  }
+  Portfolio{
+  id: stockInternet
+  }
+  AddContact{
+  id: addContact
+  }
+ 
   StackView{
   id: stackView
   anchors.fill:parent
@@ -119,20 +121,17 @@ ApplicationWindow{
   }
  
   Component.onCompleted: {
-  //contactPage.pushChatPage.connect(onPushChatPage);
-  //contactPage.menuItemClicked.connect(onMenuItemClicked);
-  //chat.friendMessageReceived.connect(conversationPage.onMsgReceived)
-  addContact.friendAdded.connect(onFriendAdded);
-  //chat.start();
-  //MyApi.doSomething()
+  initPage.pushPage.connect(onPushPage)
+  initPage.updateStockModel.connect(stockInternet.onUpdateStockModel)
   }
   Component.onDestruction:
   {
   console.log("destruction");
   }
-  function onPushChatPage(name) {
+ 
+  function onPushPage(index) {
   //stackView.push("./ConversationPage.qml", {inConversationWith: name});
-  stackView.push(conversationPage, {inConversationWith: name});
+  stackView.push(stockInternet);
   }
   function onMenuItemClicked(id)
   {
@@ -140,8 +139,5 @@ ApplicationWindow{
   console.log(id);
   stackView.push(addContact);
   }
-  }
-  function onFriendAdded(name, toxid)
-  {
   }
 }
