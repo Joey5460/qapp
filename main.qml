@@ -55,11 +55,11 @@ ApplicationWindow{
   }
  
   MenuSeparator {
-  parent: header
-  width: parent.width
-  anchors.verticalCenter: parent.bottom
-  //visible: !drawerListView.atYBeginning
-  visible: true
+      parent: header
+      width: parent.width
+      anchors.verticalCenter: parent.bottom
+      //visible: !drawerListView.atYBeginning
+      visible: true
   }
   }
  

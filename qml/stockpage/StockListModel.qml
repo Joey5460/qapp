@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 import QtQuick 2.0
-import QtQml.Models 2.15
+import QtQml.Models 2.2
 
 ListModel {
     id: stocks
@@ -76,17 +76,17 @@ ListModel {
         xhr.open("GET", req, true);
 
         xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.LOADING || xhr.readyState === XMLHttpRequest.DONE) {
-        console.log(xhr.responseText)
-        if (xhr.responseText){
-            var records = xhr.responseText;
-            console.log("quote:" + records);
-            var json = JSON.parse(records);
-            console.log("changePercentage",json.dp)
-            //setProperty(index, "value", json["c"].toFixed(3));
-            setProperty(index, "changePercentage", json["dp"].toFixed(3));
-        }
-        }
+            if (xhr.readyState === XMLHttpRequest.LOADING || xhr.readyState === XMLHttpRequest.DONE) {
+                    console.log(xhr.responseText)
+                    if (xhr.responseText){
+                        var records = xhr.responseText;
+                        console.log("quote:" + records);
+                        var json = JSON.parse(records);
+                        console.log("changePercentage",json.dp)
+                        //setProperty(index, "value", json["c"].toFixed(3));
+                        setProperty(index, "changePercentage", json["dp"].toFixed(3));
+                    }
+            }
         }
         xhr.send()
     }

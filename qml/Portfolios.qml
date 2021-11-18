@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import QtQml.Models 2.2
 import "./stockpage"
 Page {
   id: portfolios
@@ -61,15 +62,15 @@ Page {
   onPressAndHold: {
   }
   Text{
-  text: model.changePercentage.toFixed(2)
-  anchors.right: parent.right
-  anchors.verticalCenter: parent.verticalCenter
-  horizontalAlignment: Text.AlignVCenter
+      text: model.changePercentage.toFixed(2)
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      horizontalAlignment: Text.AlignVCenter
   }
   }
   Component.onCompleted: {
-  portfolioListModel.name = "Internet"
-  portfolioListModel.updateEvaluation.connect(onEvaluationUpdated)
+      portfolioListModel.name = "Internet"
+      portfolioListModel.updateEvaluation.connect(onEvaluationUpdated)
   }
   function onEvaluationUpdated(name, eval)
   {
