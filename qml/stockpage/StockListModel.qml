@@ -93,12 +93,12 @@ ListModel {
 
     function getEvaluation()
     {
-        var average = 0.0;
+        var value = 0.0;
         for (var idx = 0; idx < count; ++idx) {
-            average += parseFloat(get(idx).changePercentage);
+            value += parseFloat(get(idx).changePercentage)*parseFloat(get(idx).weight);
         }
-        console.log("average:", average/count);
-        return average/count;
+        console.log("value:", value);
+        return value;
     }
 
     function getCloseValue(index) {
@@ -150,8 +150,16 @@ ListModel {
     // ListElement {name: "The Qt Company"; stockId: "TQTC"; value: "999.0"; change: "0.0"; changePercentage: "0.0"}
 
     // Offline data downloaded using the url, https://www.quandl.com/api/v3/datasets/WIKI/<stockId>.csv.
-    ListElement {name: "Advanced Micro Devices Inc."; stockId: "BABA"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
-    ListElement {name: "Amazon.com Inc."; stockId: "BILI"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
+     ListElement {name: "Alibaba Group Holding Ltd."; stockId: "BABA"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0870"}
+     ListElement {name: "JD"; stockId: "JD"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0811"}
+     ListElement {name: "Pinduoduo"; stockId: "PDD"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0755"}
+     ListElement {name: "CTrip"; stockId: "TCOM"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0504"}
+     ListElement {name: "Baidu"; stockId: "BIDU"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0422"}
+     ListElement {name: "NetEase"; stockId: "NTES"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0435"}
+     ListElement {name: "Ymm"; stockId: "YMM"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0319"}
+     ListElement {name: "Bilibili"; stockId: "BILI"; value: "0.0"; change: "0.0"; changePercentage: "0.0"; weight:"0.0317"}
+
+
 /*
     ListElement {name: "Advanced Micro Devices Inc."; stockId: "AMD"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
     ListElement {name: "Amazon.com Inc."; stockId: "AMZN"; value: "0.0"; change: "0.0"; changePercentage: "0.0"}
