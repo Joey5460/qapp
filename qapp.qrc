@@ -1,11 +1,17 @@
 <RCC>
-  <qresource prefix="/qapp">
-  <file>main.qml</file>
-  <file>qml/AddContact.qml</file>
-  <file>qml/ContactForm.ui.qml</file>
-  <file>qml/FakeImage.qml</file>
-  <file>qml/HamburgerButton.qml</file>
-  <file>qml/InitPage.qml</file>
-  <file>images/qt-logo.png</file>
-  </qresource>
+    <qresource prefix="/qapp">
+        <file>main.qml</file>
+        <file>qml/AddContact.qml</file>
+        <file>qml/ContactForm.ui.qml</file>
+        <file>qml/FakeImage.qml</file>
+        <file>qml/HamburgerButton.qml</file>
+        <file>qml/Portfolio.qml</file>
+        <file>qml/Portfolios.qml</file>
+        <file>qml/images/qt-logo.png</file>
+        <file>qml/stockpage/Settings.qml</file>
+        <file>qml/stockpage/StockListModel.qml</file>
+        <file>qml/stockpage/StockListView.qml</file>
+        <file>qml/stockpage/StockListDelegate.qml</file>
+        <file>qml/stockpage/StockModel.qml</file>
+    </qresource>
 </RCC>

@@ -38,7 +38,7 @@ Page {
       spacing:20
       model: ListModel{
           ListElement{
-              name:"Internet"
+              name:"China Internet"
               changePercentage:-1
           }
           ListElement{
@@ -69,7 +69,7 @@ Page {
   }
   }
   Component.onCompleted: {
-      portfolioListModel.name = "Internet"
+      portfolioListModel.name = "China Internet"
       portfolioListModel.updateEvaluation.connect(onEvaluationUpdated)
   }
   function onEvaluationUpdated(name, eval)

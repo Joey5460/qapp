@@ -26,17 +26,16 @@ ApplicationWindow{
   }
   }
   ListView {
-  id: drawerListView
-  anchors.fill: parent
+      id: drawerListView
+      anchors.fill: parent
  
-  headerPositioning: ListView.OverlayHeader
-  delegate: ItemDelegate {
-  text: model.name
-  width: parent.width
-  onClicked: {
-  menuItemClicked(model.cont);
-  drawer.visible = !drawer.visible
-  }
+      headerPositioning: ListView.OverlayHeader
+      delegate: ItemDelegate {
+      text: model.name
+      width: parent.width
+      onClicked: {
+          drawer.visible = !drawer.visible
+      }
  
   }
   header: Pane {

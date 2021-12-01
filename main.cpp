@@ -60,8 +60,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("QtExamples");
 
     QGuiApplication app(argc, argv);
-
-    QQmlApplicationEngine engine("qml/main.qml");
+    QQmlApplicationEngine engine("qrc:/qapp/main.qml");
     engine.connect(&engine, &QQmlEngine::quit, &app, &QCoreApplication::quit);
     return app.exec();
 }
